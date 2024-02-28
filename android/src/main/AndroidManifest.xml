@@ -1,9 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.flutter_qq">
+    <queries>
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.tim" />
+        <package android:name="com.tencent.minihd.qq" />
+        <package android:name="com.tencent.qqlite" />
+    </queries>
     <application>
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:noHistory="true"
+            android:exported="true"
             android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -14,6 +21,7 @@
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

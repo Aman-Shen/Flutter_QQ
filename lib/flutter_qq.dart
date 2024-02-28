@@ -9,9 +9,9 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class QQResult {
-  int code;
-  String message;
-  Map<dynamic, dynamic> response;
+  int code = 1;
+  String? message;
+  Map<dynamic, dynamic>? response;
 }
 
 class FlutterQQ {
@@ -21,7 +21,7 @@ class FlutterQQ {
     await _channel.invokeMethod('registerQQ', {'appId': appId, 'univeralLink': univeralLink});
   }
 
-  static Future<bool> isQQInstalled() async {
+  static Future<bool?> isQQInstalled() async {
     return await _channel.invokeMethod('isQQInstalled');
   }
 
@@ -29,7 +29,7 @@ class FlutterQQ {
   static Future<QQResult> login() async {
     final Map<dynamic, dynamic> result = await _channel.invokeMethod('login');
     QQResult qqResult = QQResult();
-    qqResult.code = result["Code"];
+    qqResult.code = result["Code"] ?? 1;
     qqResult.message = result["Message"];
     qqResult.response = result["Response"];
     return qqResult;
@@ -39,7 +39,7 @@ class FlutterQQ {
   static Future<QQResult> getUserInfo() async {
     final Map<dynamic, dynamic> result = await _channel.invokeMethod('getUserInfo');
     QQResult qqResult = QQResult();
-    qqResult.code = result["Code"];
+    qqResult.code = result["Code"] ?? 1;
     qqResult.message = result["Message"];
     qqResult.response = result["Response"];
     return qqResult;

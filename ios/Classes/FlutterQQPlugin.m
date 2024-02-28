@@ -19,12 +19,11 @@
 @implementation FlutterQQPlugin
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterQQPlugin registerWithRegistrar:registrar];
+    [SwiftFlutterQQPlugin registerWithRegistrar:registrar];
 }
 
-#pragma - mark 9.0以后使用新API接口
-+ (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
-    return [[SwiftFlutterQQPlugin sharedInstance] application:app openURL:url options:options];
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[SwiftFlutterQQPlugin sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 @end

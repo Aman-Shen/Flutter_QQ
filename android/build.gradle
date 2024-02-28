@@ -38,6 +38,6 @@ android {
 }
 
 dependencies {
-    implementation files('libs/open_sdk_3.5.5.79_ra741783e_lite.jar')
+    implementation files('libs/open_sdk_3.5.12.2_r97423a8_lite.jar')
     implementation 'com.squareup.okhttp3:okhttp:3.12.12'
 }

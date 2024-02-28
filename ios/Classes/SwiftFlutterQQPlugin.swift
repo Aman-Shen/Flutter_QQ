@@ -30,7 +30,7 @@ public class SwiftFlutterQQPlugin: NSObject, FlutterPlugin, FlutterApplicationLi
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "flutter_qq", binaryMessenger: registrar.messenger())
-        let instance = SwiftFlutterQQPlugin()
+        let instance = sharedManager
         registrar.addMethodCallDelegate(instance, channel: channel)
         registrar.addApplicationDelegate(instance)
     }
@@ -44,7 +44,6 @@ public class SwiftFlutterQQPlugin: NSObject, FlutterPlugin, FlutterApplicationLi
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         self.result = result
         let arguments: [String: Any?]? = call.arguments as? [String: Any]
-        
         switch call.method {
         case "registerQQ":  // 初始化
             TencentOAuth.setIsUserAgreedAuthorization(true)
@@ -74,7 +73,6 @@ public class SwiftFlutterQQPlugin: NSObject, FlutterPlugin, FlutterApplicationLi
         default:
             result("iOS " + UIDevice.current.systemVersion)
         }
-        
     }
     
     @objc public func handleOpenURL(_ aNotification: NSNotification, delegate: QQApiInterfaceDelegate?) -> Bool {
@@ -88,8 +86,7 @@ public class SwiftFlutterQQPlugin: NSObject, FlutterPlugin, FlutterApplicationLi
         return true
     }
     
-    // MARK: - 9.0以后使用新API接口
-    public func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String, annotation: Any) -> Bool {
         return TencentOAuth.handleOpen(url)
     }
 }

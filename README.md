@@ -1,8 +1,6 @@
 # flutter_qq
 
-TencentOpenApi
-iOS: 3.5.7
-Android: 3.5.5
+A new flutter plugin project.
 
 ## Getting Started
 
